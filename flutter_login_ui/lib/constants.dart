@@ -25,24 +25,8 @@ class StyledButton extends StatelessWidget {
             shadowColor: Colors.transparent,
             // shape: OutlinedBorder()
           ),
-          //method 1: function defined in main file
-          onPressed: () => {
-            data = onPressed(),
-            print(data),
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(data),
-              ),
-            )
-          },
-
-          //method 2: function defined in this file only, not much customisation provided
-          // onPressed: () => {
-          //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          //     content: Text(data),
-          //   ))
-          // },
-
+          onPressed: () =>
+              {data = onPressed(), ToastNotification(data, context)},
           child: child,
         ),
       );
@@ -103,4 +87,32 @@ class TextWhite extends StatelessWidget {
         text,
         style: const TextStyle(color: dark),
       );
+}
+
+class ButtonTextGreen extends StatelessWidget {
+  ButtonTextGreen(
+      {required this.text, required this.data, required this.onPressed});
+
+  final String text;
+  String data;
+  final String Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) => GestureDetector(
+      onTap: () {
+        data = onPressed();
+        ToastNotification(data, context);
+      },
+      child: Text(
+        text,
+        style: const TextStyle(color: green2),
+      ));
+}
+
+void ToastNotification(data, BuildContext context) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(data),
+    ),
+  );
 }

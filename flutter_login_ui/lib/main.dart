@@ -108,15 +108,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 20,
               ),
               StyledButton(
-                // method 1: function defined here
                 onPressed: () {
                   return "${name.text} just logged in";
                 },
-                data: data,
-
-                //method 2: function defined in the other file
-                // onPressed: (String data) => {},
-
+                data: "${name.text} just logged in",
                 child: const Text(
                   "Sign in",
                   style: TextStyle(fontWeight: FontWeight.bold),
@@ -152,12 +147,18 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  TextWhite(text: "Don't have an account"),
-                  SizedBox(
+                children: [
+                  const TextWhite(text: "Don't have an account"),
+                  const SizedBox(
                     width: 3,
                   ),
-                  TextGreen(text: "Sign Up")
+                  ButtonTextGreen(
+                    text: "Sign Up",
+                    data: "",
+                    onPressed: () {
+                      return "${name.text} is signed up.";
+                    },
+                  )
                 ],
               ),
               const SizedBox(
